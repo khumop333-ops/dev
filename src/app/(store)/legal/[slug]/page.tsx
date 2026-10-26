@@ -1,4 +1,4 @@
-import React from "react";
+import React, { cache } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -9,23 +9,31 @@ import { formatDateSAST } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
+const getContentPageBySlug = cache(async (slug: string) => {
+  return prisma.contentPage.findUnique({
+    where: { slug },
+  });
+});
+
 export async function generateMetadata({
   params,
 }: {
   params: { slug: string };
 }): Promise<Metadata> {
-  const page = await prisma.contentPage.findUnique({
-    where: { slug: params.slug },
-  });
+  try {
+    const page = await getContentPageBySlug(params.slug);
 
-  if (!page || !page.published) {
-    return { title: "Document Not Found" };
+    if (!page || !page.published) {
+      return { title: "Document Not Found" };
+    }
+
+    return {
+      title: page.seoTitle || page.title,
+      description: page.seoDescription || `${page.title} policy document.`,
+    };
+  } catch {
+    return { title: "Policy Document" };
   }
-
-  return {
-    title: page.seoTitle || page.title,
-    description: page.seoDescription || `${page.title} policy document.`,
-  };
 }
 
 export default async function LegalContentPage({
@@ -35,9 +43,7 @@ export default async function LegalContentPage({
 }) {
   const [siteConfig, page, allPages] = await Promise.all([
     getStoreSettings(),
-    prisma.contentPage.findUnique({
-      where: { slug: params.slug },
-    }),
+    getContentPageBySlug(params.slug),
     prisma.contentPage.findMany({
       where: { published: true },
       orderBy: { title: "asc" },
@@ -65,6 +71,7 @@ export default async function LegalContentPage({
                   <Link
                     key={p.id}
                     href={`/legal/${p.slug}`}
+                    prefetch={false}
                     className={
                       active
                         ? "rounded-[4px] bg-[#23452F] px-3 py-2 text-xs font-medium text-white"

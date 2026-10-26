@@ -1,9 +1,10 @@
+import { cache } from "react";
 import { prisma } from "./prisma";
 import { defaultSiteConfig, type SiteConfig } from "@/config/site";
 
 export const STORE_SETTINGS_KEY = "store_config";
 
-export async function getStoreSettings(): Promise<SiteConfig> {
+export const getStoreSettings = cache(async (): Promise<SiteConfig> => {
   try {
     const record = await prisma.siteSetting.findUnique({
       where: { key: STORE_SETTINGS_KEY },
@@ -43,12 +44,21 @@ export async function getStoreSettings(): Promise<SiteConfig> {
       hours: {
         ...defaultSiteConfig.hours,
         ...(overrides.hours ?? {}),
-        weekdays: overrides.weekdaysHours ?? overrides.hours?.weekdays ?? defaultSiteConfig.hours.weekdays,
-        saturday: overrides.saturdayHours ?? overrides.hours?.saturday ?? defaultSiteConfig.hours.saturday,
-        sunday: overrides.sundayHours ?? overrides.hours?.sunday ?? defaultSiteConfig.hours.sunday,
+        weekdays:
+          overrides.weekdaysHours ??
+          overrides.hours?.weekdays ??
+          defaultSiteConfig.hours.weekdays,
+        saturday:
+          overrides.saturdayHours ??
+          overrides.hours?.saturday ??
+          defaultSiteConfig.hours.saturday,
+        sunday:
+          overrides.sundayHours ??
+          overrides.hours?.sunday ??
+          defaultSiteConfig.hours.sunday,
       },
     };
   } catch {
     return defaultSiteConfig;
   }
-}
+});

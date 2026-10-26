@@ -213,6 +213,7 @@ export default async function HomePage() {
               <Link
                 key={cat.id}
                 href={`/collections/${cat.slug}`}
+                prefetch={false}
                 className="group flex flex-col justify-between rounded-[8px] border border-[#D6CBB9] bg-white p-6 hover:border-[#23452F] transition-colors"
               >
                 <div>

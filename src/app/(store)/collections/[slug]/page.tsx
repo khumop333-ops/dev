@@ -1,4 +1,4 @@
-import React from "react";
+import React, { cache } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -7,25 +7,45 @@ import { ProductCard } from "@/components/store/product-card";
 
 export const dynamic = "force-dynamic";
 
+const getCategoryWithProducts = cache(async (slug: string) => {
+  return prisma.category.findUnique({
+    where: { slug },
+    include: {
+      products: {
+        where: { status: "ACTIVE" },
+        include: {
+          category: true,
+          brand: true,
+          images: { orderBy: { sortOrder: "asc" } },
+          variants: { where: { active: true }, orderBy: { sortOrder: "asc" } },
+        },
+        orderBy: [{ featured: "desc" }, { name: "asc" }],
+      },
+    },
+  });
+});
+
 export async function generateMetadata({
   params,
 }: {
   params: { slug: string };
 }): Promise<Metadata> {
-  const category = await prisma.category.findUnique({
-    where: { slug: params.slug },
-  });
+  try {
+    const category = await getCategoryWithProducts(params.slug);
 
-  if (!category || !category.active) {
-    return { title: "Collection Not Found" };
+    if (!category || !category.active) {
+      return { title: "Collection Not Found" };
+    }
+
+    return {
+      title: `${category.name} Collection`,
+      description:
+        category.description ||
+        `Browse ${category.name} available for reservation in Pretoria.`,
+    };
+  } catch {
+    return { title: "Department Collection" };
   }
-
-  return {
-    title: `${category.name} Collection`,
-    description:
-      category.description ||
-      `Browse ${category.name} available for reservation in Pretoria.`,
-  };
 }
 
 export default async function CategoryArchivePage({
@@ -34,21 +54,7 @@ export default async function CategoryArchivePage({
   params: { slug: string };
 }) {
   const [category, allCategories] = await Promise.all([
-    prisma.category.findUnique({
-      where: { slug: params.slug },
-      include: {
-        products: {
-          where: { status: "ACTIVE" },
-          include: {
-            category: true,
-            brand: true,
-            images: { orderBy: { sortOrder: "asc" } },
-            variants: { where: { active: true }, orderBy: { sortOrder: "asc" } },
-          },
-          orderBy: [{ featured: "desc" }, { name: "asc" }],
-        },
-      },
-    }),
+    getCategoryWithProducts(params.slug),
     prisma.category.findMany({
       where: { active: true },
       orderBy: { sortOrder: "asc" },
@@ -125,6 +131,7 @@ export default async function CategoryArchivePage({
               <Link
                 key={c.id}
                 href={`/collections/${c.slug}`}
+                prefetch={false}
                 className={
                   active
                     ? "rounded-[4px] border border-[#23452F] bg-[#23452F] px-3 py-1.5 text-xs font-medium text-white"

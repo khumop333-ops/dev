@@ -45,20 +45,23 @@ export default Promise.resolve({ default: mod });
 async function resolveAndSeedOnVercel() {
   if (!isVercel) return;
 
-  const candidates = [];
-  if (process.env.DATABASE_URL) {
-    candidates.push(process.env.DATABASE_URL);
-  }
-
   const ref = process.env.SUPABASE_PROJECT_REF || "irlybtlgjlfpqbvghlvh";
   const pass = process.env.SUPABASE_DB_PASSWORD || "HighveldHerbal2026DbPass!";
   const encodedPass = encodeURIComponent(pass);
 
+  // Prefer Supavisor Transaction Mode (port 6543, 200 concurrent connections) first
+  const candidates = [
+    `postgresql://postgres.${ref}:${encodedPass}@aws-0-eu-west-1.pooler.supabase.com:6543/postgres`,
+    `postgresql://postgres.${ref}:${encodedPass}@aws-1-eu-west-1.pooler.supabase.com:6543/postgres`,
+  ];
+
+  if (process.env.DATABASE_URL) {
+    candidates.push(process.env.DATABASE_URL);
+  }
+
   candidates.push(
     `postgresql://postgres.${ref}:${encodedPass}@aws-0-eu-west-1.pooler.supabase.com:5432/postgres`,
     `postgresql://postgres.${ref}:${encodedPass}@aws-1-eu-west-1.pooler.supabase.com:5432/postgres`,
-    `postgresql://postgres.${ref}:${encodedPass}@aws-0-eu-west-1.pooler.supabase.com:6543/postgres`,
-    `postgresql://postgres.${ref}:${encodedPass}@aws-1-eu-west-1.pooler.supabase.com:6543/postgres`,
     `postgresql://postgres:${encodedPass}@db.${ref}.supabase.co:5432/postgres`
   );
 

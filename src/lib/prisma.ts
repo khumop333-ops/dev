@@ -19,6 +19,14 @@ function normalizeConnectionString(rawUrl: string): {
     if (!isLocal) {
       parsed.searchParams.delete("sslmode");
       parsed.searchParams.delete("pgbouncer");
+      // Always prefer Supavisor Transaction Mode (port 6543) in serverless environments
+      // to avoid hitting the 15-connection ceiling of Session Mode (port 5432).
+      if (
+        parsed.hostname.endsWith(".pooler.supabase.com") &&
+        parsed.port === "5432"
+      ) {
+        parsed.port = "6543";
+      }
     }
     return { connectionString: parsed.toString(), isLocal };
   } catch {
@@ -40,20 +48,17 @@ function createPrismaClient(): PrismaClient {
     globalForPrisma.pgPool ??
     new Pool({
       connectionString,
-      max: 10,
+      max: isLocal ? 10 : 2,
+      idleTimeoutMillis: 5000,
+      connectionTimeoutMillis: 15000,
       ssl: isLocal ? false : { rejectUnauthorized: false },
     });
 
-  if (process.env.NODE_ENV !== "production") {
-    globalForPrisma.pgPool = pool;
-  }
+  globalForPrisma.pgPool = pool;
 
   const adapter = new PrismaPg(pool);
   return new PrismaClient({ adapter });
 }
 
 export const prisma = globalForPrisma.prisma ?? createPrismaClient();
-
-if (process.env.NODE_ENV !== "production") {
-  globalForPrisma.prisma = prisma;
-}
+globalForPrisma.prisma = prisma;
