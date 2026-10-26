@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img" aria-label="Prepared Pre-Rolls">
+  <rect width="600" height="600" fill="#F7F3EA" />
+  <rect x="28" y="28" width="544" height="544" fill="none" stroke="#D6CBB9" stroke-width="1" />
+  <rect x="64" y="96" width="472" height="320" fill="#EFE9DC" stroke="#D6CBB9" stroke-width="1" />
+  <text x="64" y="68" font-family="Georgia, serif" font-size="13" fill="#5F5B52" letter-spacing="2">BOTANICAL CATEGORY</text>
+  <text x="536" y="68" font-family="monospace" font-size="12" fill="#5F5B52" text-anchor="end">CAT-02</text>
+  
+        <g transform="translate(300, 250)" fill="none" stroke="#23452F" stroke-width="1.5">
+          <rect x="-55" y="-85" width="32" height="170" rx="4" fill="#FFFFFF" />
+          <line x1="-55" y1="35" x2="-23" y2="35" />
+          <rect x="-15" y="-95" width="32" height="180" rx="4" fill="#FFFFFF" />
+          <line x1="-15" y1="25" x2="17" y2="25" />
+          <rect x="25" y="-75" width="32" height="160" rx="4" fill="#FFFFFF" />
+          <line x1="25" y1="45" x2="57" y2="45" />
+          <circle cx="1" cy="-112" r="4" fill="#B85C38" stroke="none" />
+        </g>
+      
+  <line x1="64" y1="454" x2="536" y2="454" stroke="#D6CBB9" stroke-width="1" />
+  <text x="64" y="492" font-family="Georgia, serif" font-size="24" fill="#1C1C19">Prepared Pre-Rolls</text>
+  <text x="64" y="522" font-family="system-ui, sans-serif" font-size="13" fill="#5F5B52" letter-spacing="0.5">Whole-flower unbleached paper rolls</text>
+  <text x="536" y="522" font-family="system-ui, sans-serif" font-size="11" fill="#23452F" text-anchor="end" letter-spacing="1.5">HIGHVELD HERBAL CO.</text>
+</svg>

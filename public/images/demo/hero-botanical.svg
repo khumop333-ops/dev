@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 900" width="800" height="900" role="img" aria-label="Highveld Herbal Co. Botanical Specimen">
+  <rect width="800" height="900" fill="#23452F" />
+  <rect x="36" y="36" width="728" height="828" fill="none" stroke="#E7DECF" stroke-opacity="0.3" stroke-width="1" />
+  <rect x="84" y="120" width="632" height="540" fill="#F7F3EA" stroke="#D6CBB9" stroke-width="1" />
+  <text x="84" y="88" font-family="Georgia, serif" font-size="14" fill="#E7DECF" letter-spacing="3">PRETORIA BOTANICAL DISPENSARY • EST. GP</text>
+  <text x="716" y="88" font-family="monospace" font-size="13" fill="#E7DECF" text-anchor="end">25.7479° S, 28.2293° E</text>
+  <g transform="translate(400, 390)" fill="none" stroke="#23452F" stroke-width="1.75">
+    <line x1="0" y1="180" x2="0" y2="-165" />
+    <path d="M0,105 C-80,90 -115,30 -80,-25 C-35,-10 -10,45 0,105 Z" fill="#23452F" fill-opacity="0.09" />
+    <path d="M0,65 C80,50 115,-10 80,-65 C35,-50 10,5 0,65 Z" fill="#B85C38" fill-opacity="0.14" />
+    <path d="M0,5 C-70,-10 -95,-70 -60,-115 C-25,-100 -8,-45 0,5 Z" fill="#23452F" fill-opacity="0.09" />
+    <path d="M0,-45 C65,-60 85,-110 55,-150 C22,-135 8,-90 0,-45 Z" fill="#B85C38" fill-opacity="0.14" />
+    <circle cx="0" cy="-178" r="8" fill="#B85C38" stroke="none" />
+  </g>
+  <text x="84" y="724" font-family="Georgia, serif" font-size="32" fill="#F7F3EA">Carefully selected. Clearly presented.</text>
+  <text x="84" y="762" font-family="system-ui, sans-serif" font-size="15" fill="#E7DECF" opacity="0.85">Small-batch botanical preparations, transparent batch documentation, and</text>
+  <text x="84" y="786" font-family="system-ui, sans-serif" font-size="15" fill="#E7DECF" opacity="0.85">store-confirmed reservations for collection or Pretoria local delivery.</text>
+  <line x1="84" y1="816" x2="716" y2="816" stroke="#E7DECF" stroke-opacity="0.25" stroke-width="1" />
+  <text x="84" y="842" font-family="monospace" font-size="12" fill="#E7DECF" letter-spacing="1.5">STRICTLY 18+ • NO ONLINE CARD PAYMENT • ZAR PRICING</text>
+</svg>
