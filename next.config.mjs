@@ -9,7 +9,13 @@ const nextConfig = {
   },
   experimental: {
     serverActions: {
-      allowedOrigins: ["localhost:3000", "*.e2b.app"],
+      allowedOrigins: [
+        "localhost:3000",
+        "*.e2b.app",
+        "*.vercel.app",
+        "highveld-herbal.vercel.app",
+        "highveld-herbal-khumo.vercel.app",
+      ],
     },
   },
 };

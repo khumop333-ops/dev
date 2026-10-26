@@ -49,37 +49,37 @@ export function StoreFooter({ siteConfig }: { siteConfig: SiteConfig }) {
             </h3>
             <ul className="space-y-2 text-xs text-[#5F5B52]">
               <li>
-                <Link href="/shop" className="hover:text-[#23452F]">
+                <Link href="/shop" prefetch={false} className="hover:text-[#23452F]">
                   Full Product Catalogue
                 </Link>
               </li>
               <li>
-                <Link href="/collections/flower" className="hover:text-[#23452F]">
+                <Link href="/collections/flower" prefetch={false} className="hover:text-[#23452F]">
                   Cured Dried Flower
                 </Link>
               </li>
               <li>
-                <Link href="/collections/pre-rolls" className="hover:text-[#23452F]">
+                <Link href="/collections/pre-rolls" prefetch={false} className="hover:text-[#23452F]">
                   Whole-Flower Pre-Rolls
                 </Link>
               </li>
               <li>
-                <Link href="/collections/edibles" className="hover:text-[#23452F]">
+                <Link href="/collections/edibles" prefetch={false} className="hover:text-[#23452F]">
                   Botanical Confectionery
                 </Link>
               </li>
               <li>
-                <Link href="/collections/extracts" className="hover:text-[#23452F]">
+                <Link href="/collections/extracts" prefetch={false} className="hover:text-[#23452F]">
                   Solventless Extracts
                 </Link>
               </li>
               <li>
-                <Link href="/collections/cbd-wellness" className="hover:text-[#23452F]">
+                <Link href="/collections/cbd-wellness" prefetch={false} className="hover:text-[#23452F]">
                   CBD &amp; Apothecary
                 </Link>
               </li>
               <li>
-                <Link href="/collections/accessories" className="hover:text-[#23452F]">
+                <Link href="/collections/accessories" prefetch={false} className="hover:text-[#23452F]">
                   Storage &amp; Accessories
                 </Link>
               </li>
@@ -100,16 +100,16 @@ export function StoreFooter({ siteConfig }: { siteConfig: SiteConfig }) {
             <div className="pt-2 border-t border-[#D6CBB9] text-xs text-[#5F5B52] space-y-1.5">
               <p className="font-medium text-[#1C1C19]">Information</p>
               <div className="flex flex-wrap gap-x-4 gap-y-1">
-                <Link href="/visit" className="hover:text-[#23452F] underline">
+                <Link href="/visit" prefetch={false} className="hover:text-[#23452F] underline">
                   Visit &amp; Directions
                 </Link>
-                <Link href="/about" className="hover:text-[#23452F] underline">
+                <Link href="/about" prefetch={false} className="hover:text-[#23452F] underline">
                   About Us
                 </Link>
-                <Link href="/faq" className="hover:text-[#23452F] underline">
+                <Link href="/faq" prefetch={false} className="hover:text-[#23452F] underline">
                   FAQ
                 </Link>
-                <Link href="/contact" className="hover:text-[#23452F] underline">
+                <Link href="/contact" prefetch={false} className="hover:text-[#23452F] underline">
                   Contact &amp; POPIA Requests
                 </Link>
               </div>
@@ -123,42 +123,42 @@ export function StoreFooter({ siteConfig }: { siteConfig: SiteConfig }) {
             </h3>
             <ul className="space-y-2 text-xs text-[#5F5B52]">
               <li>
-                <Link href="/legal/privacy" className="hover:text-[#23452F]">
+                <Link href="/legal/privacy" prefetch={false} className="hover:text-[#23452F]">
                   Privacy Policy (POPIA)
                 </Link>
               </li>
               <li>
-                <Link href="/legal/terms" className="hover:text-[#23452F]">
+                <Link href="/legal/terms" prefetch={false} className="hover:text-[#23452F]">
                   Terms &amp; Conditions
                 </Link>
               </li>
               <li>
-                <Link href="/legal/age-policy" className="hover:text-[#23452F]">
+                <Link href="/legal/age-policy" prefetch={false} className="hover:text-[#23452F]">
                   18+ Age Verification Policy
                 </Link>
               </li>
               <li>
-                <Link href="/legal/responsible-use" className="hover:text-[#23452F]">
+                <Link href="/legal/responsible-use" prefetch={false} className="hover:text-[#23452F]">
                   Responsible Use Notice
                 </Link>
               </li>
               <li>
-                <Link href="/legal/delivery-collection" className="hover:text-[#23452F]">
+                <Link href="/legal/delivery-collection" prefetch={false} className="hover:text-[#23452F]">
                   Collection &amp; Delivery Policy
                 </Link>
               </li>
               <li>
-                <Link href="/legal/returns-refunds" className="hover:text-[#23452F]">
+                <Link href="/legal/returns-refunds" prefetch={false} className="hover:text-[#23452F]">
                   Returns &amp; Refunds Policy
                 </Link>
               </li>
               <li>
-                <Link href="/legal/cookies" className="hover:text-[#23452F]">
+                <Link href="/legal/cookies" prefetch={false} className="hover:text-[#23452F]">
                   Cookie Policy
                 </Link>
               </li>
               <li>
-                <Link href="/legal/paia" className="hover:text-[#23452F]">
+                <Link href="/legal/paia" prefetch={false} className="hover:text-[#23452F]">
                   PAIA Section 51 Manual
                 </Link>
               </li>
@@ -178,6 +178,7 @@ export function StoreFooter({ siteConfig }: { siteConfig: SiteConfig }) {
           <div className="flex items-center gap-4 shrink-0">
             <Link
               href="/admin/login"
+              prefetch={false}
               className="text-[#5F5B52] hover:text-[#1C1C19] underline"
             >
               Staff Portal

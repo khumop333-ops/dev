@@ -39,6 +39,7 @@ export function ProductCard({ product }: { product: ProductCardData }) {
     <article className="group flex flex-col rounded-[8px] border border-[#D6CBB9] bg-white overflow-hidden transition-colors hover:border-[#23452F]">
       <Link
         href={`/products/${product.slug}`}
+        prefetch={false}
         className="relative block aspect-square bg-[#F7F3EA] border-b border-[#D6CBB9] overflow-hidden"
       >
         <img
@@ -70,7 +71,9 @@ export function ProductCard({ product }: { product: ProductCardData }) {
           </div>
 
           <h3 className="font-serif text-xl text-[#1C1C19] group-hover:text-[#23452F] transition-colors">
-            <Link href={`/products/${product.slug}`}>{product.name}</Link>
+            <Link href={`/products/${product.slug}`} prefetch={false}>
+              {product.name}
+            </Link>
           </h3>
 
           <p className="mt-2 text-xs text-[#5F5B52] line-clamp-2 leading-relaxed">
@@ -93,6 +96,7 @@ export function ProductCard({ product }: { product: ProductCardData }) {
 
           <Link
             href={`/products/${product.slug}`}
+            prefetch={false}
             className="inline-flex items-center justify-center rounded-[6px] border border-[#23452F] bg-white px-3.5 py-2 text-xs font-medium text-[#23452F] group-hover:bg-[#23452F] group-hover:text-white transition-colors"
           >
             View Details

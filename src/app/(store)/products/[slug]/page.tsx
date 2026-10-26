@@ -1,4 +1,4 @@
-import React from "react";
+import React, { cache } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -18,23 +18,37 @@ import { getAvailableStock } from "@/lib/inventory";
 
 export const dynamic = "force-dynamic";
 
+const getProductBySlug = cache(async (slug: string) => {
+  return prisma.product.findUnique({
+    where: { slug },
+    include: {
+      category: true,
+      brand: true,
+      images: { orderBy: { sortOrder: "asc" } },
+      variants: { where: { active: true }, orderBy: { sortOrder: "asc" } },
+    },
+  });
+});
+
 export async function generateMetadata({
   params,
 }: {
   params: { slug: string };
 }): Promise<Metadata> {
-  const product = await prisma.product.findUnique({
-    where: { slug: params.slug },
-  });
+  try {
+    const product = await getProductBySlug(params.slug);
 
-  if (!product || product.status !== "ACTIVE") {
-    return { title: "Product Not Found" };
+    if (!product || product.status !== "ACTIVE") {
+      return { title: "Product Not Found" };
+    }
+
+    return {
+      title: product.seoTitle || product.name,
+      description: product.seoDescription || product.shortDescription,
+    };
+  } catch {
+    return { title: "Botanical Preparation" };
   }
-
-  return {
-    title: product.seoTitle || product.name,
-    description: product.seoDescription || product.shortDescription,
-  };
 }
 
 export default async function ProductDetailPage({
@@ -44,15 +58,7 @@ export default async function ProductDetailPage({
 }) {
   const [siteConfig, product] = await Promise.all([
     getStoreSettings(),
-    prisma.product.findUnique({
-      where: { slug: params.slug },
-      include: {
-        category: true,
-        brand: true,
-        images: { orderBy: { sortOrder: "asc" } },
-        variants: { where: { active: true }, orderBy: { sortOrder: "asc" } },
-      },
-    }),
+    getProductBySlug(params.slug),
   ]);
 
   if (!product || product.status !== "ACTIVE") {
@@ -168,6 +174,7 @@ export default async function ProductDetailPage({
           <li>
             <Link
               href={`/collections/${product.category.slug}`}
+              prefetch={false}
               className="hover:text-[#23452F]"
             >
               {product.category.name}
@@ -216,6 +223,7 @@ export default async function ProductDetailPage({
             <div className="flex flex-wrap items-center gap-2 text-xs text-[#5F5B52] mb-2">
               <Link
                 href={`/collections/${product.category.slug}`}
+                prefetch={false}
                 className="rounded-[4px] border border-[#D6CBB9] bg-[#E7DECF] px-2.5 py-0.5 font-medium text-[#1C1C19]"
               >
                 {product.category.name}
@@ -394,6 +402,7 @@ export default async function ProductDetailPage({
             </h2>
             <Link
               href={`/collections/${product.category.slug}`}
+              prefetch={false}
               className="text-xs font-medium text-[#23452F] hover:underline"
             >
               View all {product.category.name} →

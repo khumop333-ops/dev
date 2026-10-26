@@ -44,7 +44,7 @@ export function StoreHeader({
             White-Label Demo Template:
           </span>{" "}
           Fictional Pretoria dispensary showcase ({siteConfig.brandName}).{" "}
-          <Link href="/admin" className="underline text-[#23452F] font-medium">
+          <Link href="/admin" prefetch={false} className="underline text-[#23452F] font-medium">
             Open Admin Portal
           </Link>
         </div>
@@ -90,6 +90,7 @@ export function StoreHeader({
                 <Link
                   key={item.href}
                   href={item.href}
+                  prefetch={false}
                   className={cn(
                     "text-sm transition-colors py-1 border-b-2",
                     isActive
@@ -175,6 +176,7 @@ export function StoreHeader({
                       <Link
                         key={item.href}
                         href={item.href}
+                        prefetch={false}
                         onClick={() => setMobileOpen(false)}
                         className="rounded-[4px] px-3 py-2.5 text-base font-medium text-[#1C1C19] hover:bg-[#E7DECF]"
                       >

@@ -114,8 +114,14 @@ describe("Database & HTTP Smoke Integration Tests", () => {
     const routes = [
       "/",
       "/shop",
-      "/products/highveld-gold-botanical-blend",
-      "/collections/botanical-blends",
+      "/products/highveld-apricot-reserve",
+      "/products/bushveld-classic-single-roll",
+      "/collections/flower",
+      "/collections/pre-rolls",
+      "/collections/edibles",
+      "/collections/extracts",
+      "/collections/cbd-wellness",
+      "/collections/accessories",
       "/cart",
       "/checkout",
       "/order/HHC-2026-DEMO01",
@@ -141,6 +147,16 @@ describe("Database & HTTP Smoke Integration Tests", () => {
       const res = await fetch(`${baseUrl}${route}`);
       expect(res.status, `Expected 200 OK for ${route}`).toBe(200);
     }
+
+    const productHtml = await (
+      await fetch(`${baseUrl}/products/highveld-apricot-reserve`)
+    ).text();
+    expect(productHtml).toContain("Highveld Apricot Reserve");
+
+    const collectionHtml = await (
+      await fetch(`${baseUrl}/collections/pre-rolls`)
+    ).text();
+    expect(collectionHtml).toContain("Bushveld Classic Single Roll");
 
     const healthRes = await fetch(`${baseUrl}/api/health`);
     const healthJson = await healthRes.json();
