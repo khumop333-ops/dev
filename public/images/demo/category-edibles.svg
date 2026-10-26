@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img" aria-label="Botanical Confectionery">
+  <rect width="600" height="600" fill="#F7F3EA" />
+  <rect x="28" y="28" width="544" height="544" fill="none" stroke="#D6CBB9" stroke-width="1" />
+  <rect x="64" y="96" width="472" height="320" fill="#EFE9DC" stroke="#D6CBB9" stroke-width="1" />
+  <text x="64" y="68" font-family="Georgia, serif" font-size="13" fill="#5F5B52" letter-spacing="2">BOTANICAL CATEGORY</text>
+  <text x="536" y="68" font-family="monospace" font-size="12" fill="#5F5B52" text-anchor="end">CAT-03</text>
+  
+        <g transform="translate(300, 255)" fill="none" stroke="#23452F" stroke-width="1.5">
+          <rect x="-70" y="-45" width="140" height="115" rx="6" fill="#FFFFFF" />
+          <rect x="-52" y="-68" width="104" height="23" rx="3" fill="#B85C38" fill-opacity="0.18" />
+          <rect x="-48" y="-18" width="96" height="60" fill="none" />
+          <line x1="-30" y1="2" x2="30" y2="2" />
+          <line x1="-22" y1="16" x2="22" y2="16" />
+          <circle cx="0" cy="-8" r="3" fill="#B85C38" stroke="none" />
+        </g>
+      
+  <line x1="64" y1="454" x2="536" y2="454" stroke="#D6CBB9" stroke-width="1" />
+  <text x="64" y="492" font-family="Georgia, serif" font-size="24" fill="#1C1C19">Botanical Confectionery</text>
+  <text x="64" y="522" font-family="system-ui, sans-serif" font-size="13" fill="#5F5B52" letter-spacing="0.5">Measured pastilles & artisanal infusions</text>
+  <text x="536" y="522" font-family="system-ui, sans-serif" font-size="11" fill="#23452F" text-anchor="end" letter-spacing="1.5">HIGHVELD HERBAL CO.</text>
+</svg>
